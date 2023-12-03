@@ -1,7 +1,7 @@
 use std::{fs, collections::HashMap};
 use rayon::prelude::*;
 
-const FILE_PATH: &str = "input2.txt";
+const FILE_PATH: &str = "input.txt";
 
 const RED_CUBES: u32 = 12;
 const GREEN_CUBES: u32 = 13;
