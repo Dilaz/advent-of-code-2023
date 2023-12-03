@@ -1,6 +1,7 @@
 use std::{fs, collections::HashMap};
+use rayon::prelude::*;
 
-const FILE_PATH: &str = "input.txt";
+const FILE_PATH: &str = "input2.txt";
 
 const RED_CUBES: u32 = 12;
 const GREEN_CUBES: u32 = 13;
@@ -23,6 +24,7 @@ fn parts(minimum_values: bool) {
 
     let sum: u32 = content
     .lines()
+    .par_bridge()
     .map(|line| {
         let mut iter = line.split(": ");
         let game_name = iter.next().unwrap();
