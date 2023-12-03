@@ -5,6 +5,9 @@ version = 3
 [[package]]
 name = "advent-of-code-2023"
 version = "0.1.0"
+dependencies = [
+ "rayon",
+]
 
 [[package]]
 name = "autocfg"
@@ -49,24 +52,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5a22b2d63d4d1dc0b7f1b6b2747dd0088008a9be28b6ddf0b1e7d335e3037294"
 dependencies = [
  "cfg-if",
-]
-
-[[package]]
-name = "day1"
-version = "0.1.0"
-
-[[package]]
-name = "day2"
-version = "0.1.0"
-dependencies = [
- "rayon",
-]
-
-[[package]]
-name = "day3"
-version = "0.1.0"
-dependencies = [
- "rayon",
 ]
 
 [[package]]
