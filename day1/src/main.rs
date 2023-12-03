@@ -1,36 +1,32 @@
 use std::fs;
 
 const FILE_PATH: &str = "input.txt";
-const FILE_PATH_DAY_2: &str = "input2.txt";
 const NUMBERS: [&str; 10] = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
 
 fn main() {
-    part1();
-    part2();
+    let input = fs::read_to_string(FILE_PATH)
+        .expect("Something went wrong reading the file");
+    println!("Part 1: {}", &part1(&input));
+    println!("Part 2: {}", &part2(&input));
 }
 
-fn part1() {
-    let contents = fs::read_to_string(FILE_PATH)
-        .expect("Something went wrong reading the file");
-    let sum = contents.split("\n")
+fn part1(input: &str) -> u32 {
+    let sum = input.lines()
     // Only get numbers
     .map(|x| x.chars().filter(|&c| c.is_digit(10)).collect::<String>())
     .map(|x| format!("{}{}", x.chars().nth(0).unwrap(), x.chars().last().unwrap()))
-    .map(|x| x.parse::<i32>().unwrap())
-    .sum::<i32>();
+    .map(|x| x.parse::<u32>().unwrap())
+    .sum::<u32>();
 
-    println!("Part 1: {}", sum);
+    sum
 }
-fn part2() {
-    let contents = fs::read_to_string(FILE_PATH_DAY_2)
-        .expect("Something went wrong reading the file");
-    let sum = contents.split("\n")
-
+fn part2(input: &str) -> u32 {
+    let sum = input.lines()
     .map(|x| format!("{}{}", find_first(&x), find_last(&x)))
     .map(|x| x.parse::<u32>().unwrap())
     .sum::<u32>();
 
-    println!("Part 2: {}", sum);
+    sum
 }
 
 fn find_first(s: &str) -> u32 {
@@ -73,4 +69,30 @@ fn find_last(s: &str) -> u32 {
     }
 
     last_num
+}
+
+
+#[test]
+fn test_part1() {
+    let test = r#"1abc2
+pqr3stu8vwx
+a1b2c3d4e5f
+treb7uchet"#.to_string();
+    let result = part1(&test);
+    assert_eq!(result, 142)
+
+}
+
+#[test]
+fn test_part2() {
+    let test = r#"two1nine
+eightwothree
+abcone2threexyz
+xtwone3four
+4nineeightseven2
+zoneight234
+7pqrstsixteen"#.to_string();
+    let result = part2(&test);
+    assert_eq!(result, 281)
+
 }

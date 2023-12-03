@@ -12,17 +12,18 @@ const GREEN_STR: &str = "green";
 const BLUE_STR: &str = "blue";
 
 fn main() {
-    // Part 1
-    parts(false);
+    let input = fs::read_to_string(FILE_PATH).expect("Failed to read file");
 
+    // Part 1
+    println!("Part 1: {}", &parts(&input, false));
+    
     // Part 2
-    parts(true);
+    println!("Part 2: {}", &parts(&input, true));
 }
 
-fn parts(minimum_values: bool) {
-    let content = fs::read_to_string(FILE_PATH).expect("Failed to read file");
+fn parts(input: &str, minimum_values: bool) -> u32 {
 
-    let sum: u32 = content
+    let sum: u32 = input
     .lines()
     .par_bridge()
     .map(|line| {
@@ -75,5 +76,26 @@ fn parts(minimum_values: bool) {
     })
     .sum();
 
-    println!("Sum: {}", sum);
+    sum
+}
+
+#[test]
+fn test_part1() {
+    let test = r#"Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
+Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue
+Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red
+Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red
+Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green"#.to_string();
+    let result = parts(&test, false);
+    assert_eq!(result, 8)
+}
+#[test]
+fn test_part2() {
+    let test = r#"Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
+Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue
+Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red
+Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red
+Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green"#.to_string();
+    let result = parts(&test, true);
+    assert_eq!(result, 2286)
 }

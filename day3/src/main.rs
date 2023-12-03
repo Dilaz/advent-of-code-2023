@@ -109,7 +109,6 @@ fn test_part1() {
 .664.598.."#.to_string();
     let result = parts(&test, None);
     assert_eq!(result, 4361)
-
 }
 
 #[test]
