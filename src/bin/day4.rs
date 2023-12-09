@@ -1,28 +1,11 @@
-use std::{fs, collections::{HashSet, HashMap, VecDeque}};
-use clap::Parser;
+use std::{collections::{HashSet, HashMap, VecDeque}};
 use rayon::iter::{ParallelBridge, ParallelIterator};
 
 
-const FILE_PATH: &str = "input.txt";
-
-#[derive(Parser, Clone)]
-#[clap(author, version, about, long_about = None)]
-pub struct Opts {
-    #[clap(long, short = '1', default_value = FILE_PATH)]
-    pub input_part1: String,
-
-    #[clap(long, short = '2', default_value = FILE_PATH)]
-    pub input_part2: String,
-}
-
 fn main() {
-    let args = Opts::parse();
-    let input_part1 = fs::read_to_string(args.input_part1)
-        .expect("Something went wrong reading the file");
-    println!("Part 1: {}", &part1(&input_part1));
-    let input_part2 = fs::read_to_string(args.input_part2)
-        .expect("Something went wrong reading the file");
-    println!("Part 2: {}", &part2(&input_part2));
+    let input = include_str!("../../inputs/day4.txt");
+    println!("Part 1: {}", &part1(&input));
+    println!("Part 2: {}", &part2(&input));
 }
 
 fn part1(input: &str) -> u32 {
