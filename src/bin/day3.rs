@@ -1,26 +1,12 @@
-use std::{cmp, collections::HashMap, fs, sync::RwLock};
-use clap::Parser;
+use std::{cmp, collections::HashMap, sync::RwLock};
 use rayon::iter::{IntoParallelIterator, ParallelIterator};
-
-const FILE_PATH: &str = "input2.txt";
 
 const EMPTY_CHAR: char = '.';
 
-#[derive(Parser, Clone)]
-#[clap(author, version, about, long_about = None)]
-pub struct Opts {
-    #[clap(long, short = '1', default_value = FILE_PATH)]
-    pub input_part1: String,
-
-    #[clap(long, short = '2', default_value = FILE_PATH)]
-    pub input_part2: String,
-}
 fn main() {
-    let args: Opts = Opts::parse();
-    let input_part1 = fs::read_to_string(args.input_part1).expect("Failed to read file");
-    println!("Part 1: {}", parts(&input_part1, None));
-    let input_part2 = fs::read_to_string(args.input_part2).expect("Failed to read file");
-    println!("Part 2: {}", parts(&input_part2, Some('*')));
+    let input = include_str!("../../inputs/day3.txt");
+    println!("Part 1: {}", parts(&input, None));
+    println!("Part 2: {}", parts(&input, Some('*')));
 }
 
 #[derive(Debug, Copy, Clone)]

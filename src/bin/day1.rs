@@ -1,26 +1,9 @@
-use std::fs;
-use clap::Parser;
-
-const FILE_PATH: &str = "input.txt";
 const NUMBERS: [&str; 10] = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
-#[derive(Parser, Clone)]
-#[clap(author, version, about, long_about = None)]
-pub struct Opts {
-    #[clap(long, short = '1', default_value = FILE_PATH)]
-    pub input_part1: String,
-
-    #[clap(long, short = '2', default_value = FILE_PATH)]
-    pub input_part2: String,
-}
 
 fn main() {
-    let args = Opts::parse();
-    let input_part1 = fs::read_to_string(args.input_part1)
-        .expect("Something went wrong reading the file");
-    println!("Part 1: {}", &part1(&input_part1));
-    let input_part2 = fs::read_to_string(args.input_part2)
-        .expect("Something went wrong reading the file");
-    println!("Part 2: {}", &part2(&input_part2));
+    let input = include_str!("../../inputs/day1.txt");
+    println!("Part 1: {}", &part1(&input));
+    println!("Part 2: {}", &part2(&input));
 }
 
 fn part1(input: &str) -> u32 {

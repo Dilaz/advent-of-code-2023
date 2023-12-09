@@ -1,8 +1,5 @@
-use std::{fs, collections::HashMap};
-use clap::Parser;
+use std::collections::HashMap;
 use rayon::prelude::*;
-
-const FILE_PATH: &str = "input.txt";
 
 const RED_CUBES: u32 = 12;
 const GREEN_CUBES: u32 = 13;
@@ -12,15 +9,8 @@ const RED_STR: &str = "red";
 const GREEN_STR: &str = "green";
 const BLUE_STR: &str = "blue";
 
-#[derive(Parser, Clone)]
-#[clap(author, version, about, long_about = None)]
-pub struct Opts {
-    #[clap(long, short, default_value = FILE_PATH)]
-    pub input: String,
-}
 fn main() {
-    let args = Opts::parse();
-    let input = fs::read_to_string(args.input).expect("Failed to read file");
+    let input = include_str!("../../inputs/day2.txt");
 
     // Part 1
     println!("Part 1: {}", &parts(&input, false));
