@@ -17,5 +17,14 @@ name = "day3"
 [[bin]]
 name = "day4"
 
+[[bin]]
+name = "day5"
+
+[[bin]]
+name = "day6"
+
+[[bin]]
+name = "day7"
+
 [dependencies]
 rayon = "1.8.0"
